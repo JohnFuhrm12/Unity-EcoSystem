@@ -11,8 +11,8 @@ public class Crab : MonoBehaviour
     public bool mating = false;
     public Animator CrabAnim;
 
-    public float movementSpeed = 2.5f;
-    //public float runSpeed = 3f;
+    public float movementSpeed = 3.5f;
+    public float runSpeed = 8f;
 
     FOV fovScript;
     HungerBar hungerScript;
@@ -57,8 +57,11 @@ public class Crab : MonoBehaviour
         GameObject[] CrabCountFemale;
         CrabCountMale = GameObject.FindGameObjectsWithTag("Male");
         CrabCountFemale = GameObject.FindGameObjectsWithTag("Female");
-        if (isWalking) {
+        if (isWalking && hungerScript.isStarving == false) {
             transform.position += transform.right * movementSpeed * Time.deltaTime;
+        }
+        if (isWalking && hungerScript.isStarving == true) {
+            transform.position += transform.right * runSpeed * Time.deltaTime;
         }
         TargetFood();
         if (isWandering == false && isEating == false) {
@@ -84,7 +87,7 @@ public class Crab : MonoBehaviour
         GameObject FoodItem = FindClosestFood();
         float dist = Vector3.Distance(FoodItem.transform.position, transform.position);
 
-        if (fovScript.canSeeFood && isEating == false && searchingMate == false && hungerScript.hunger < 6) {
+        if (fovScript.canSeeFood && isEating == false && searchingMate == false && hungerScript.hunger < 8) {
             if (dist < 15) {
                 isWalking = false;
                 StopCoroutine(Wander());
@@ -203,7 +206,6 @@ public class Crab : MonoBehaviour
                 Instantiate(crab, transform.position * 1.2f, transform.rotation);
             }
             mating = false;
-            matingScript.mated = true;
         }
         if (mating && gameObject.tag == "Male") {
             matingScript.mating = 10f;
@@ -216,11 +218,11 @@ public class Crab : MonoBehaviour
         searchingMate = true;
         float dist = Vector3.Distance(ClosestMate.transform.position, transform.position);
         transform.LookAt(ClosestMate.transform.position);
-        if (dist > 10 && matingScript.mated == false) {
+        if (dist > 10) {
             transform.position += transform.forward * movementSpeed * Time.deltaTime;
             mating = true;
         }
-        if (dist <= 10 && mating && matingScript.mated == false)  {
+        if (dist <= 10 && mating)  {
             StartCoroutine(CreateBaby());
         }
         if (mating == false) {

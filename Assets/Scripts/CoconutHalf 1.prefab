@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5420375692397174964}
   - component: {fileID: 7331613071910772687}
   - component: {fileID: 7238012745608544431}
+  - component: {fileID: -5837711110712230539}
   m_Layer: 6
   m_Name: CoconutHalf 1
   m_TagString: Food
@@ -64,6 +65,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.48, y: 1.44, z: 2.44}
   m_Center: {x: 0, y: 1.43, z: 0}
+--- !u!114 &-5837711110712230539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4644014227949795854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e52016635918848ab52051dfc571d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5554027140322631346
 GameObject:
   m_ObjectHideFlags: 0

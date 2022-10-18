@@ -11,12 +11,12 @@ public class MatingBar : MonoBehaviour
     public Slider matingSlider;
 
     Crab crabScript;
-
-    public bool mated = false;
+    HungerBar hungerScript;
 
     void Start() {
         matingSlider.value = CalculateMating();
         crabScript = GetComponent<Crab>();
+        hungerScript = GetComponent<HungerBar>();
     }
 
     void Update() {
@@ -24,7 +24,7 @@ public class MatingBar : MonoBehaviour
 
         mating -= 0.0005f;
 
-        if (mating <= 4 && mated == false) {
+        if (mating <= 4 && hungerScript.isStarving == false) {
             crabScript.findMate();
         }
         

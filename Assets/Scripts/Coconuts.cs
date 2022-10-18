@@ -12,7 +12,7 @@ public class Coconuts : MonoBehaviour
     }
 
     public IEnumerator SpawnCoconuts() {
-        int spawnTime = Random.Range(15, 45);
+        int spawnTime = Random.Range(30, 75);
         coroutineRunning = true;
         while(true) {
             yield return new WaitForSeconds(spawnTime);

@@ -10,6 +10,8 @@ public class HungerBar : MonoBehaviour
     public GameObject hungerBarUI;
     public Slider hungerSlider;
 
+    public bool isStarving = false;
+
     void Start() {
         hungerSlider.value = CalculateHunger();
     }
@@ -17,10 +19,17 @@ public class HungerBar : MonoBehaviour
     void Update() {
         hungerSlider.value = CalculateHunger();
 
-        hunger -= 0.0005f;
+        hunger -= 0.0003f;
         
         if (hunger <= 0) {
             Destroy(gameObject);
+        }
+
+        if (hunger <= 3) {
+            isStarving = true;
+        }
+        if (hunger > 3) {
+            isStarving = false;
         }
     }
 
